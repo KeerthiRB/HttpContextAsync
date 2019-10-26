@@ -15,6 +15,10 @@ namespace LoggerProcess
         public static void Save()
         {
             StringBuilder sb = new StringBuilder();
+            if (HttpContext.Current.Items["WorkFlowLog"] != null)
+            {
+                sb.Append(HttpContext.Current.Items["WorkFlowLog"].ToString());
+            }
             if (HttpContext.Current.Items["Debug"] != null)
             {
                 sb.Append(HttpContext.Current.Items["Debug"].ToString());
@@ -27,10 +31,8 @@ namespace LoggerProcess
             {
                 sb.Append(HttpContext.Current.Items["Info"].ToString());
             }
-            if (HttpContext.Current.Items["WorkFlowLog"] != null)
-            {
-                sb.Append(HttpContext.Current.Items["WorkFlowLog"].ToString());
-            }
+            sb.Append("....................................................");
+            
             WriteLog(sb.ToString());
             
         }

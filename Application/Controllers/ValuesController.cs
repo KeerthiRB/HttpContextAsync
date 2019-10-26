@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web;
+using LoggerProcess;
 
 namespace Application.Controllers
 {
@@ -20,13 +21,14 @@ namespace Application.Controllers
         // GET api/values
         public async Task<IEnumerable<string>> Get()
         {
-            HttpContext.Current.Items["MyItem"] =  new List<string>{ "Testing","Keerthi"};
+            LogDetails.WrokFlowLog($" Controller : - In Message Class  Get Messages Method Called ");
             return await _messages.GetMessages();
         }
 
         // GET api/values/5
         public async Task<string> Get(int id)
         {
+            LogDetails.WrokFlowLog($" Controller : - In Message Class  Get Message Method Called ID: {id}");
             return await _messages.GetMessage(id);
         }
 

@@ -46,5 +46,11 @@
     <Compile Include="interfaceaccess\IMessages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoggerProcess\LoggerProcess.csproj">
+      <Project>{7B00A387-0E55-4DBC-B8AB-DC4C3C7CB686}</Project>
+      <Name>LoggerProcess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

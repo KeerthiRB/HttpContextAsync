@@ -1,4 +1,5 @@
 ﻿using BAL.interfaceaccess;
+using LoggerProcess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,42 @@ namespace BAL
     {
         public async Task<string> GetMessage(int id)
         {
-            throw new Exception("Un Known");
-            return "value";
+            LogDetails.WrokFlowLog($" BAL : - In Message Class  Get Message Method Called With id : {id}");
+            try
+            {
+                
+                LogDetails.Debug($"ID :- {id}");
+                LogDetails.Info($" BAL : - In Message Class  Get Message Method Called With id : {id}");
+                if (id > 10)
+                {
+                   throw new Exception("ID is not valid");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogDetails.Info($" BAL : - In Message Class  Get Message Method Called With id : {id}");
+                LogDetails.Error(ex);
+            }
+            
+            return $"Some Value Id Sent :{id}";
             
         }
 
         public async Task<IEnumerable<string>> GetMessages()
         {
-            if (HttpContext.Current.Items["MyItem"] != null)
+            LogDetails.WrokFlowLog($" BAL : - In Message Class  Get Messages Method Called ");
+            LogDetails.Info($" BAL : - In Message Class  Get Messages Method Called ");
+            try
             {
-                return (List<string>)HttpContext.Current.Items["MyItem"];
+                return new string[] { $"value1{DateTime.Now.Ticks.ToString()}", $"value2{DateTime.Now.Ticks.ToString()}" };
             }
-            return new string[] { "value1", "value2" };
+            catch(Exception ex)
+            {
+                LogDetails.Info($" BAL : - In Message Class  Get Messages Method Called ");
+                LogDetails.Error(ex);
+                throw ex;
+            }
+            
         }
     }
 }
